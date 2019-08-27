@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:fragment="header-css">
+        <!-- this is header-css -->
+        <link rel="stylesheet" type="text/css"
+              href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" />
+        <title>K8s Test App</title>
+    </div>
+</head>
+<body>
+<div th:fragment="header">
+    <!-- this is header -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" th:style="'background-color: ' + ${bgcolor!=null ? bgcolor : 'inherit'} + ' !important;'">
+        <a class="navbar-brand" th:href="@{/}">K8s Test App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" th:href="@{/}">Home</a>
+                <a class="nav-item nav-link" th:href="@{/env}">Environment</a>
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+</body>
+</html>
