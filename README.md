@@ -11,8 +11,10 @@ This demo app uses spring boot and a h2-database as technologies.
  ## Running
  Run with docker
  ```shell
- docker run viadee/k8s-demo-app:latest
+ docker run -p 8080:8080 viadee/k8s-demo-app:latest
  ```
+
+ Then browse to ```http://localhost:8080```
 
  ## Building
  This is a simple maven project. Just run ```maven package```.
