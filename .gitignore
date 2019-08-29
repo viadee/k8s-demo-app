@@ -1,4 +1,6 @@
 /.settings/
 /target/
 *.class
+.project
+.classpath
 
