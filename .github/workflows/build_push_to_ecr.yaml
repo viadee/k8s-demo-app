@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: "Configure AWS Credentials" Action For GitHub Actions
+      - name: Configure AWS Credentials
         # You may pin to the exact commit or the version.
         # uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
         uses: aws-actions/configure-aws-credentials@v1
@@ -19,8 +19,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # AWS Session Token
-          aws-session-token: # optional
           # AWS Region, e.g. us-east-2
           aws-region: us-east-1
  
