@@ -51,12 +51,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: public.ecr.aws/m4k8r3n4/k8s-demo-app
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}{% raw %}
+
         
             
       - name: Build and push Docker image
