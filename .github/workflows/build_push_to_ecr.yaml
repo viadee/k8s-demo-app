@@ -9,9 +9,7 @@ jobs:
         
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV        
+
         
       - name: Login to Public ECR
         uses: docker/login-action@v1
@@ -42,13 +40,25 @@ jobs:
       - name: Maven package
         run: mvn package -B
 
+        
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: public.ecr.aws/m4k8r3n4/k8s-demo-app
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.6.1
         with:
           context: .
           platforms: linux/amd64
-          push: true
-          tags: |
-            public.ecr.aws/m4k8r3n4/k8s-demo-app:latest
-            public.ecr.aws/m4k8r3n4/k8s-demo-app:$RELEASE_VERSION
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}          
             
