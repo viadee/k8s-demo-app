@@ -10,19 +10,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: "Configure AWS Credentials" Action For GitHub Actions
-        # You may pin to the exact commit or the version.
-        # uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # AWS Session Token
-          aws-session-token: # optional
-          # AWS Region, e.g. us-east-2
-          aws-region: us-east-1
+   #   - name: Configure AWS Credentials
+    #    # You may pin to the exact commit or the version.
+    #    # uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+    #    uses: aws-actions/configure-aws-credentials@v1
+    #    with:
+    #      # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+    #      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #      # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+    #      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #      # AWS Region, e.g. us-east-2
+    #      aws-region: us-east-1
  
         
       #- id: install-aws-cli
@@ -30,17 +28,17 @@ jobs:
       #  with:
       #    version: 2 # default
       #    verbose: false # default        
-      - name: get docker credentials
-        run: aws ecr-public get-login-password --region us-east-1 --profile playground-dev-ecr-push | docker login --username AWS --password-stdin public.ecr.aws/m4k8r3n4
+  #    - name: get docker credentials
+  #      run: aws ecr-public get-login-password --region us-east-1  | docker login --username AWS --password-stdin public.ecr.aws/m4k8r3n4
         
-      #- name: Login to Public ECR
-      #  uses: docker/login-action@v1
-      #  with:
-      #    registry: public.ecr.aws/m4k8r3n4
-      #    username: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #    password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #  env:
-      #    AWS_REGION: us-east-1
+      - name: Login to Public ECR
+        uses: docker/login-action@v1
+        with:
+          registry: public.ecr.aws
+          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        env:
+          AWS_REGION: us-east-1
        
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -48,7 +46,7 @@ jobs:
       - name: Set up JDK 1.11
         uses: actions/setup-java@v2.1.0
         with:
-            distribution: 'openjdk' # See 'Supported distributions' for available options
+            distribution: 'adopt' # See 'Supported distributions' for available options
             java-version: '11'
       
       - name: Cache local Maven repository
@@ -61,7 +59,10 @@ jobs:
 
       - name: Maven package
         run: mvn package -B
-        
+
+     # - name: debug
+     #   run: cat ~/.docker/config.json
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.6.1
         with:
