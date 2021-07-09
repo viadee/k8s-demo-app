@@ -10,26 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-   #   - name: Configure AWS Credentials
-    #    # You may pin to the exact commit or the version.
-    #    # uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
-    #    uses: aws-actions/configure-aws-credentials@v1
-    #    with:
-    #      # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
-    #      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #      # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
-    #      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #      # AWS Region, e.g. us-east-2
-    #      aws-region: us-east-1
- 
-        
-      #- id: install-aws-cli
-      #  uses: unfor19/install-aws-cli-action@v1
-      #  with:
-      #    version: 2 # default
-      #    verbose: false # default        
-  #    - name: get docker credentials
-  #      run: aws ecr-public get-login-password --region us-east-1  | docker login --username AWS --password-stdin public.ecr.aws/m4k8r3n4
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV        
         
       - name: Login to Public ECR
         uses: docker/login-action@v1
@@ -60,9 +42,6 @@ jobs:
       - name: Maven package
         run: mvn package -B
 
-     # - name: debug
-     #   run: cat ~/.docker/config.json
-
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.6.1
         with:
@@ -71,3 +50,5 @@ jobs:
           push: true
           tags: |
             public.ecr.aws/m4k8r3n4/k8s-demo-app:latest
+            public.ecr.aws/m4k8r3n4/k8s-demo-app:$RELEASE_VERSION
+            
