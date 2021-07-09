@@ -10,11 +10,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - id: install-aws-cli
-        uses: unfor19/install-aws-cli-action@v1
+      - name: "Configure AWS Credentials" Action For GitHub Actions
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          version: 2 # default
-          verbose: false # default        
+          # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS Session Token
+          aws-session-token: # optional
+          # AWS Region, e.g. us-east-2
+          aws-region: us-east-1
+ 
+        
+      #- id: install-aws-cli
+      #  uses: unfor19/install-aws-cli-action@v1
+      #  with:
+      #    version: 2 # default
+      #    verbose: false # default        
       - name: get docker credentials
         run: aws ecr-public get-login-password --region us-east-1 --profile playground-dev-ecr-push | docker login --username AWS --password-stdin public.ecr.aws/m4k8r3n4
         
