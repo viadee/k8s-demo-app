@@ -59,7 +59,10 @@ jobs:
 
       - name: Maven package
         run: mvn package -B
-        
+
+      - name: debug
+        run: cat ~/.docker/config.json
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.6.1
         with:
