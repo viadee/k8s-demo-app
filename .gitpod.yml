@@ -1,6 +1,6 @@
 
 image:
-  file: .gitpod/.Workspace.Dockerfile
+  file: .gitpod/Workspace.Dockerfile
 
 tasks:
   - init: mvn install -DskipTests=false
