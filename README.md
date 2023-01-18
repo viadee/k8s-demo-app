@@ -14,7 +14,7 @@ This demo app uses spring boot and a h2-database as technologies.
 
  Run with docker
  ```shell
- docker run -p 8080:8080 viadee/k8s-demo-app:latest
+ docker run -p 8080:8080 public.ecr.aws/m4k8r3n4/k8s-demo-app:latest
  ```
 
  Then browse to `http://localhost:8080`
