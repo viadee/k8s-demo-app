@@ -19,6 +19,12 @@ This demo app uses spring boot and a h2-database as technologies.
 
  Then browse to `http://localhost:8080`
 
+Or build and run with maven locally:
+
+ ```shell
+ mvn spring-boot:run
+ ```
+
  ## Building
 
  This is a simple maven project. Just run `maven package`.
