@@ -3,7 +3,7 @@ package de.viadee.k8s.testapp.counter;
 import java.sql.Timestamp;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
