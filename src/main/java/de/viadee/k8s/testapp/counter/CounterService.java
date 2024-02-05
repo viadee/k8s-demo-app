@@ -1,16 +1,14 @@
 package de.viadee.k8s.testapp.counter;
 
-import java.sql.Timestamp;
-import java.util.Optional;
-
-import javax.annotation.PostConstruct;
-
+import com.zaxxer.hikari.HikariDataSource;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.zaxxer.hikari.HikariDataSource;
+import java.sql.Timestamp;
+import java.util.Optional;
 
 @Component
 public class CounterService {

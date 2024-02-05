@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="fragments/header :: header-css"/>
+    <div th:replace="~{fragments/header :: header-css}"/>
     <title>K8s Test App</title>
 </head>
 <body>
 
-<div th:replace="fragments/header :: header"/>
+<div th:replace="~{fragments/header :: header}"/>
 
 <div class="container">
 
@@ -22,8 +22,8 @@
             </thead>
             <tbody>
             <tr th:each="instance : ${env}">
-                <td th:text="${instance.key}">key</td>
-                <td th:text="${instance.value}">val</td>
+                <td th:text="${instance.getKey()}">val</td>
+                <td th:text="${instance.getValue()}">val</td>
             </tr>
             </tbody>
         </table>
@@ -32,7 +32,7 @@
 </div>
 <!-- /.container -->
 
-<div th:replace="fragments/footer :: footer"/>
+<div th:replace="~{fragments/footer :: footer}"/>
 
 </body>
 </html>
