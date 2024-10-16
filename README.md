@@ -40,6 +40,7 @@ mvn clean
 # 'package' contains step 'process-aot' which is needed for native:compile
 mvn package -Pnative 
 mvn native:compile
+# If "[1/8] Initializing..." fails, it might be due to a lag of resources. Try increasing the VM resources.
  ```
 
 ### start native build
