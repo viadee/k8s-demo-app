@@ -14,14 +14,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 		<hibernate.version>6.4.2.Final</hibernate.version> <!-- https://github.com/spring-projects/spring-boot/issues/39744 -->
 	</properties>
 
@@ -75,9 +75,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>
-						de.viadee.k8s.testapp.K8sDemoApplication
-					</mainClass>
+
 				</configuration>
                 <executions>
                     <execution>

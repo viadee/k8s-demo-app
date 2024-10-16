@@ -31,3 +31,19 @@ Or build and run with maven locally:
 
  Or just do a local docker build: `docker build -t imagename .`
  Then you can run the container locally.
+
+
+## Native Build
+
+ ```shell
+mvn clean
+# 'package' contains step 'process-aot' which is needed for native:compile
+mvn package -Pnative 
+mvn native:compile
+ ```
+
+### start native build
+```shell
+./target/k8s-demo-app
+./target/k8s-demo-app --spring.profiles.active=red
+```
