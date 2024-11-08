@@ -5,7 +5,7 @@
 
 	<groupId>de.viadee.k8s.testapp</groupId>
 	<artifactId>k8s-demo-app</artifactId>
-	<version>0.2.1-SNAPSHOT</version>
+	<version>0.2.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>k8s-demo-app</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
+		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -22,7 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>21</java.version>
-		<hibernate.version>6.4.2.Final</hibernate.version> <!-- https://github.com/spring-projects/spring-boot/issues/39744 -->
+		<!-- <hibernate.version>6.4.2.Final</hibernate.version> https://github.com/spring-projects/spring-boot/issues/39744 -->
 	</properties>
 
 	<dependencies>
@@ -55,8 +55,8 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
-			<!-- On update replace version in htmls -->
-			<version>5.3.2</version>
+			<!-- On update replace version in htmls (needed for native )-->
+			<version>5.3.3</version>
 		</dependency>
 	</dependencies>
 
@@ -66,10 +66,6 @@
 			<plugin>
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
-				<configuration>
-<!--					&lt;!&ndash; mainClass is used to specify the path to the main method class &ndash;&gt;-->
-					<mainClass>de.viadee.k8s.testapp.K8sDemoApplication</mainClass>
-				</configuration>
 			</plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

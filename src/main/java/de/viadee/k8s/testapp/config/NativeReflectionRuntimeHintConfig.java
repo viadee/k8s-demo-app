@@ -30,8 +30,8 @@ public class NativeReflectionRuntimeHintConfig {
            hints.reflection().registerTypeIfPresent(classLoader, "java.util.HashMap$Node"
                     , MemberCategory.values());
 
-            hints.resources().registerPattern("META-INF/resources/webjars/bootstrap/5.3.2/css/bootstrap.min.css");
-            hints.resources().registerPattern("META-INF/resources/webjars/bootstrap/5.3.2/js/bootstrap.min.js");
+            hints.resources().registerPattern("META-INF/resources/webjars/bootstrap/5.3.3/css/bootstrap.min.css");
+            hints.resources().registerPattern("META-INF/resources/webjars/bootstrap/5.3.3/js/bootstrap.min.js");
         }
     }
 }
