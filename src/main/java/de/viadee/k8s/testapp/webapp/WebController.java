@@ -1,8 +1,8 @@
 package de.viadee.k8s.testapp.webapp;
 
-import java.util.Map;
-import java.util.TreeMap;
-
+import com.zaxxer.hikari.HikariDataSource;
+import de.viadee.k8s.testapp.counter.CounterEntity;
+import de.viadee.k8s.testapp.counter.CounterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.zaxxer.hikari.HikariDataSource;
-
-import de.viadee.k8s.testapp.counter.CounterEntity;
-import de.viadee.k8s.testapp.counter.CounterService;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class WebController {
@@ -72,7 +70,7 @@ public class WebController {
     @GetMapping("/env")
     public String k8s_env(Model model) {
         initBgColor(model);
-        Map<String, String> env = new TreeMap<>(System.getenv());
+        Map<String, String> env = new HashMap<>(System.getenv());
 
         model.addAttribute("env", env);
 

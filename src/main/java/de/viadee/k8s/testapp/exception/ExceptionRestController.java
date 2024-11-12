@@ -16,5 +16,4 @@ public class ExceptionRestController {
         LOG.error("log exception on error level", runtimeException);
         throw runtimeException;
     }
-
 }
