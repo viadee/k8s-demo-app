@@ -21,22 +21,21 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: "21"
-          distribution: "adopt" # See 'Supported distributions' for available options
+          distribution: "graalvm" # See 'Supported distributions' for available options
           cache: 'maven'
 
-      - name: Maven package
-        run: mvn -B package
+      - name: Maven native build
+        run: mvn package -Pnative native:compile
 
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: public.ecr.aws/m4k8r3n4/k8s-demo-app
+          images: public.ecr.aws/m4k8r3n4/k8s-demo-app-native
           tags: |
             type=ref,event=branch
             type=ref,event=pr

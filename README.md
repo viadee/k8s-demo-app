@@ -14,10 +14,16 @@ This demo app uses spring boot and a h2-database as technologies.
 
  Run with docker
  ```shell
- docker run -p 8080:8080 viadee/k8s-demo-app:latest
+ docker run -p 8080:8080 public.ecr.aws/viadee/k8s-demo-app:latest
  ```
 
  Then browse to `http://localhost:8080`
+
+Or build and run with maven locally:
+
+ ```shell
+ mvn spring-boot:run
+ ```
 
  ## Building
 
@@ -25,3 +31,20 @@ This demo app uses spring boot and a h2-database as technologies.
 
  Or just do a local docker build: `docker build -t imagename .`
  Then you can run the container locally.
+
+
+## Native Build in github Codespaces
+
+ ```shell
+mvn clean
+# 'package' contains step 'process-aot' which is needed for native:compile
+mvn package -Pnative 
+mvn native:compile
+# If "[1/8] Initializing..." fails, it might be due to a lag of resources. Try increasing the VM resources.
+ ```
+
+### start native build
+```shell
+./target/k8s-demo-app
+./target/k8s-demo-app --spring.profiles.active=red
+```

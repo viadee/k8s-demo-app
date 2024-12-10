@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: Java CI Native Build with Maven
 
 on:
   push:
@@ -20,8 +20,14 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: "21"
-          distribution: "liberica" # See 'Supported distributions' for available options
+          distribution: "graalvm" # See 'Supported distributions' for available options
           cache: 'maven'
 
-      - name: Maven package
-        run: mvn -B package
+      - name: Maven native build
+        run: mvn package -Pnative native:compile
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-build
+          path: target/k8s-demo-app
+          retention-days: 5
