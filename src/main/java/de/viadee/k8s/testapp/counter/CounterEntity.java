@@ -1,9 +1,9 @@
 package de.viadee.k8s.testapp.counter;
 
-import java.sql.Timestamp;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 public class CounterEntity {
