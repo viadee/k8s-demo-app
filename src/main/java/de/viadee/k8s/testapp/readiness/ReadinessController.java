@@ -32,5 +32,4 @@ public class ReadinessController {
             return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
         }
     }
-
 }

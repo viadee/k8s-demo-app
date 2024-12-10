@@ -5,7 +5,7 @@
 
 	<groupId>de.viadee.k8s.testapp</groupId>
 	<artifactId>k8s-demo-app</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>k8s-demo-app</name>
@@ -14,14 +14,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.0</version>
+		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>11</java.version>
+		<java.version>21</java.version>
+		<!-- <hibernate.version>6.4.2.Final</hibernate.version> https://github.com/spring-projects/spring-boot/issues/39744 -->
 	</properties>
 
 	<dependencies>
@@ -47,11 +48,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-kubernetes-client-config</artifactId>
-			<version>3.0.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -59,16 +55,24 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
-			<version>5.2.3</version>
+			<!-- On update replace version in htmls (needed for native )-->
+			<version>5.3.3</version>
 		</dependency>
 	</dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+			<plugin>
+				<groupId>org.graalvm.buildtools</groupId>
+				<artifactId>native-maven-plugin</artifactId>
+			</plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+
+				</configuration>
                 <executions>
                     <execution>
                         <goals>
