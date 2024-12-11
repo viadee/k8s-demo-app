@@ -1,4 +1,4 @@
-name: build release and push to ECR
+name: build native release and push to ECR
 on:
   release:
     types: [prereleased, released]
