@@ -10,12 +10,11 @@ import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.sql.init.dependency.DependsOnDatabaseInitialization;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
-import java.util.Optional;
-
 @Component
+@DependsOnDatabaseInitialization
 public class CounterService {
 
     private static final Logger log = LoggerFactory.getLogger(CounterService.class);
@@ -56,7 +55,7 @@ public class CounterService {
 
         Optional<CounterEntity> counter = counterRepository.findById(ID);
 
-        if(!counter.isPresent()) {
+        if(counter.isEmpty()) {
             CounterEntity newEntity = new CounterEntity();
             newEntity.setId(ID);
             newEntity.setCounter(0L);
