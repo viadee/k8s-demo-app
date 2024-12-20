@@ -37,9 +37,7 @@ Or build and run with maven locally:
 
  ```shell
 mvn clean
-# 'package' contains step 'process-aot' which is needed for native:compile
-mvn package -Pnative 
-mvn native:compile
+mvn native:compile -Pnative
 # If "[1/8] Initializing..." fails, it might be due to a lag of resources. Try increasing the VM resources.
  ```
 
