@@ -1,0 +1,10 @@
+FROM public.ecr.aws/docker/library/oraclelinux:8-slim
+
+WORKDIR /app
+
+# Copy the native binary from the build stage
+COPY target/k8s-demo-app .
+
+# Run the application
+EXPOSE 8080/tcp
+CMD ["/app/k8s-demo-app"]

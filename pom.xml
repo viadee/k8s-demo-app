@@ -61,6 +61,7 @@
 	</dependencies>
 
     <build>
+		<!-- make sure that the final jar does not contain any version -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
 			<plugin>
@@ -76,6 +77,7 @@
                 <executions>
                     <execution>
                         <goals>
+                            <!-- generates build information that can be used by the Actuator -->
                             <goal>build-info</goal>
                         </goals>
                     </execution>
