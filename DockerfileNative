@@ -1,4 +1,7 @@
-FROM public.ecr.aws/docker/library/oraclelinux:8-slim
+FROM alpine
+
+# prepare to run glibc programs
+RUN apk add gcompat
 
 WORKDIR /app
 
@@ -7,4 +10,4 @@ COPY target/k8s-demo-app .
 
 # Run the application
 EXPOSE 8080/tcp
-CMD ["/app/k8s-demo-app"]
+ENTRYPOINT ["/app/k8s-demo-app"]
