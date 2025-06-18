@@ -26,7 +26,7 @@ public class NativeReflectionRuntimeHintConfig {
             // especially for rendering k8s_env.html
             hints.reflection().registerType(Map.Entry.class, MemberCategory.values());
             // hints.reflection().registerType(HashMap.class, MemberCategory.values());
-            // Innere Klassen
+            // inner classes
            hints.reflection().registerTypeIfPresent(classLoader, "java.util.HashMap$Node"
                     , MemberCategory.values());
 

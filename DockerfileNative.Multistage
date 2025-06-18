@@ -1,0 +1,34 @@
+# First stage: JDK with GraalVM
+FROM container-registry.oracle.com/graalvm/native-image:24 AS build
+
+# Update package lists and Install Maven
+RUN microdnf install -y maven
+RUN microdnf clean all
+
+#ENV GRAALVM_HOME="$JAVA_HOME"
+WORKDIR /usr/src/app
+
+# Copy pom.xml and download dependencies
+COPY pom.xml .
+
+RUN mvn -Pnative dependency:go-offline
+
+COPY src src
+
+RUN mvn package
+RUN mvn -Pnative -DskipTests native:compile
+
+## Second stage: Lightweight image
+FROM alpine
+
+# prepare to run glibc programs
+RUN apk add gcompat
+
+WORKDIR /app
+
+# Copy the native binary from the build stage
+COPY --from=build /usr/src/app/target/k8s-demo-app /app/k8s-demo-app
+
+# Run the application
+EXPOSE 8080/tcp
+ENTRYPOINT ["/app/k8s-demo-app"]
