@@ -1,3 +1,6 @@
 Dockerfile
+Dockerfile.Multistage
+DockerfileNative
+DockerfileNative.Multistage
 *.class
 .gitignore

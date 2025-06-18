@@ -46,3 +46,13 @@ mvn native:compile -Pnative
 ./target/k8s-demo-app
 ./target/k8s-demo-app --spring.profiles.active=red
 ```
+
+## Connecting PostgreSQL DB
+
+Overwrite application properties, e.g. via environment variables:
+```
+SPRING_DATASOURCE_URL             = "jdbc:postgresql://<url_to_postgres_server_instance>:5432/<database_name>"
+SPRING_DATASOURCE_DRIVERCLASSNAME = "org.postgresql.Driver"
+SPRING_DATASOURCE_USERNAME        = <postgres_user>
+SPRING_DATASOURCE_PASSWORD        = <postgres_password>
+```

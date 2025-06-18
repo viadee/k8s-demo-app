@@ -1,4 +1,4 @@
-FROM openjdk:17-slim
+FROM openjdk:21-slim
 COPY target/k8s-demo-app.jar app.jar
 RUN groupadd -g 1000 appuser && \
     useradd -u 1000 -g 1000 appuser

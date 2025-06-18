@@ -5,7 +5,7 @@
 
 	<groupId>de.viadee.k8s.testapp</groupId>
 	<artifactId>k8s-demo-app</artifactId>
-	<version>0.2.2-SNAPSHOT</version>
+	<version>0.3.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>k8s-demo-app</name>
@@ -48,6 +48,11 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -55,12 +60,13 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
-			<!-- On update replace version in htmls (needed for native )-->
+			<!-- On update replace version in htmls and ...HintConfig.java (needed for native )-->
 			<version>5.3.3</version>
 		</dependency>
 	</dependencies>
 
     <build>
+		<!-- make sure that the final jar does not contain any version -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
 			<plugin>
@@ -76,6 +82,7 @@
                 <executions>
                     <execution>
                         <goals>
+                            <!-- generates build information that can be used by the Actuator -->
                             <goal>build-info</goal>
                         </goals>
                     </execution>
