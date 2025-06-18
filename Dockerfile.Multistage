@@ -1,4 +1,8 @@
+<<<<<<< fixDocker
 FROM maven:3.9-amazoncorretto-21-alpine as build_container
+=======
+FROM maven:3.8-openjdk-21-slim as build_container
+>>>>>>> master
 
 WORKDIR /build
 COPY pom.xml .
