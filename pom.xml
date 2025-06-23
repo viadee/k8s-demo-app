@@ -63,6 +63,10 @@
 			<!-- On update replace version in htmls and ...HintConfig.java (needed for native) -->
 			<version>5.3.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-lite</artifactId>
+		</dependency>
 	</dependencies>
 
     <build>
