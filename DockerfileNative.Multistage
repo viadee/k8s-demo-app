@@ -16,7 +16,8 @@ RUN mvn -Pnative dependency:go-offline
 COPY src src
 
 RUN mvn package
-RUN mvn -Pnative -DskipTests native:compile
+RUN mvn -PnativeTest test
+RUN mvn -Pnative -DskipTests clean native:compile
 
 ## Second stage: Lightweight image
 FROM alpine
