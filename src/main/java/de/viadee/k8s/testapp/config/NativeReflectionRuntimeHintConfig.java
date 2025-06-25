@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Configuration
 @RegisterReflectionForBinding(classes = {HashMap.class})
 @ImportRuntimeHints(NativeReflectionRuntimeHintConfig.NativeRuntimeHints.class)
@@ -23,15 +22,10 @@ public class NativeReflectionRuntimeHintConfig {
         @Override
         public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
 
-            // especially for rendering k8s_env.html
+            // Register Map.Entry class for k8s_env.html template rendering
             hints.reflection().registerType(Map.Entry.class, MemberCategory.values());
-            // hints.reflection().registerType(HashMap.class, MemberCategory.values());
-            // inner classes
-           hints.reflection().registerTypeIfPresent(classLoader, "java.util.HashMap$Node"
-                    , MemberCategory.values());
-
-            hints.resources().registerPattern("META-INF/resources/webjars/bootstrap/5.3.5/css/bootstrap.min.css");
-            hints.resources().registerPattern("META-INF/resources/webjars/bootstrap/5.3.5/js/bootstrap.min.js");
+            // register inner class for for k8s_env.html template rendering
+            hints.reflection().registerTypeIfPresent(classLoader, "java.util.HashMap$Node", MemberCategory.values());
         }
     }
 }
