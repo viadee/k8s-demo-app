@@ -23,8 +23,11 @@ jobs:
           distribution: "graalvm" # See 'Supported distributions' for available options
           cache: 'maven'
 
+      - name: Maven native test
+        run: mvn clean test -PnativeTest
+
       - name: Maven native build
-        run: mvn package -Pnative native:compile
+        run: mvn clean package -Pnative native:compile
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
