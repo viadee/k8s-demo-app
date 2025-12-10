@@ -5,7 +5,7 @@
 
 	<groupId>de.viadee.k8s.testapp</groupId>
 	<artifactId>k8s-demo-app</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.3.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>k8s-demo-app</name>
@@ -58,6 +58,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-resttestclient</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<!-- On update replace version in htmls and ...HintConfig.java (needed for native) -->
