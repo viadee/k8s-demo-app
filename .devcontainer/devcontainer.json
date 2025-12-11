@@ -7,7 +7,7 @@
     "ghcr.io/devcontainers/features/java:1": {
     // version is installed via sdkman 
     // see https://sdkman.io/jdks#graalce and https://www.graalvm.org/downloads/ for version
-    "version": "21-graalce",
+    "version": "25-graalce",
     "installMaven": "true",
     "mavenVersion": "3.8.6",
     "installGradle": "false"
