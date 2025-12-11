@@ -21,7 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>21</java.version>
+		<java.version>25</java.version>
 		<!-- <hibernate.version>6.4.2.Final</hibernate.version> https://github.com/spring-projects/spring-boot/issues/39744 -->
 	</properties>
 
