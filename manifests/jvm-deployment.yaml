@@ -18,6 +18,6 @@ spec:
         app: k8s-demo-app-jvm
     spec:
       containers:
-      - image: public.ecr.aws/viadee/k8s-demo-app:v1.4.0-rc2
+      - image: public.ecr.aws/viadee/k8s-demo-app:1.4.0-rc2
         name: k8s-demo-app
         resources: {}
