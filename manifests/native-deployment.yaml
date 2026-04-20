@@ -20,5 +20,11 @@ spec:
       containers:
       - image: public.ecr.aws/viadee/k8s-demo-app-native:1.4.0-rc2
         name: k8s-demo-app-native
-        resources: {}
+        resources: 
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
 status: {}
