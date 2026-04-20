@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-demo-app-jvm
+  name: k8s-demo-app-jvm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-demo-app-jvm
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-demo-app-jvm
+    spec:
+      containers:
+      - image: public.ecr.aws/viadee/k8s-demo-app:latest
+        name: k8s-demo-app
+        resources: {}
