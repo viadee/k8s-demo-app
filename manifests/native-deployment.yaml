@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-demo-app-native
+  name: k8s-demo-app-native
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-demo-app-native
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-demo-app-native
+    spec:
+      containers:
+      - image: public.ecr.aws/m4k8r3n4/k8s-demo-app-native:1.4.0-rc1
+        name: k8s-demo-app-native
+        resources: {}
+status: {}
