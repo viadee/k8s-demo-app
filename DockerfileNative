@@ -1,13 +1,20 @@
-FROM alpine
+FROM alpine:latest
 
 # prepare to run glibc programs
 RUN apk add gcompat
 
+# Create non-root user
+RUN apk add --no-cache shadow && \
+    groupadd -g 1000 appuser && \
+    useradd -u 1000 -g 1000 -m appuser && \
+    mkdir -p /app && \
+    chown -R appuser:appuser /app
+
 WORKDIR /app
 
 # Copy the native binary from the build stage
-COPY target/k8s-demo-app .
+COPY --chown=appuser:appuser target/k8s-demo-app .
 
-# Run the application
+USER appuser
 EXPOSE 8080/tcp
 ENTRYPOINT ["/app/k8s-demo-app"]
