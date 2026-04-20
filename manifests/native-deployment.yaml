@@ -18,7 +18,7 @@ spec:
         app: k8s-demo-app-native
     spec:
       containers:
-      - image: public.ecr.aws/viadee/k8s-demo-app-native:1.4.0-rc1
+      - image: public.ecr.aws/viadee/k8s-demo-app-native:1.4.0-rc2
         name: k8s-demo-app-native
         resources: {}
 status: {}
