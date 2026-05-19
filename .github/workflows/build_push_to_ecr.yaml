@@ -2,6 +2,8 @@ name: build release and push to ECR
 on:
   release:
     types: [prereleased, released]
+permissions:
+  contents: read
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
