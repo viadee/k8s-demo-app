@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           java-version: "25"
-          distribution: "liberica" # See 'Supported distributions' for available options
+          distribution: "temurin" # See 'Supported distributions' for available options
           cache: 'maven'
 
       - name: Maven package
